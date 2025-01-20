@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>calculator</title>
+    <style>
+      body {
+        font-family: Arial;
+        background-color: black;
+        height: 100vh;           
+        display: flex;          
+        justify-content: center;
+        align-items: center; 
+      }
+      .row-buttons {
+        margin-bottom: 14px;
+      }
+      .grey-buttons {
+        background-color: rgb(51, 51, 51);
+        color: white;
+        border: none;
+        height: 60px;
+        width: 60px;
+        border-radius: 30px;
+        font-size: 25px;
+        margin-right: 6px;
+      }
+      .orange-buttons {
+        background-color: rgb(254, 160, 10);
+        color: white;
+        border: none;
+        height: 60px;
+        width: 60px;
+        border-radius: 30px;
+        font-size: 25px;
+        margin-right: 8px;
+      }
+      .clear {
+        background-color: rgb(51, 51, 51);
+        color: white;
+        border: none;
+        height: 60px;
+        width: 60px;
+        border-radius: 30px;
+        font-size: 17px;
+      }
+      .result {
+        font-family: Arial;
+        font-size: 45px;
+        color: white;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="result"></p>
+      <div class="row-buttons">
+        <button class="grey-buttons" onclick="attachElements('1')">1</button>
+        <button class="grey-buttons" onclick="attachElements('2')">2</button>
+        <button class="grey-buttons" onclick="attachElements('3')">3</button>
+        <button class="orange-buttons" onclick="attachElements('+')">+</button>
+      </div>
+      <div class="row-buttons">
+        <button class="grey-buttons" onclick="attachElements('4')">4</button>
+        <button class="grey-buttons" onclick="attachElements('5')">5</button>
+        <button class="grey-buttons" onclick="attachElements('6')">6</button>
+        <button class="orange-buttons" onclick="attachElements('-')">-</button>
+      </div>
+      <div class="row-buttons">
+        <button class="grey-buttons" onclick="attachElements('7')">7</button>
+        <button class="grey-buttons" onclick="attachElements('7')">8</button>
+        <button class="grey-buttons" onclick="attachElements('9')">9</button>
+        <button class="orange-buttons" onclick="attachElements('*')">*</button>
+      </div>
+      <div class="row-buttons">
+        <button class="grey-buttons" onclick="attachElements('0')">0</button>
+        <button class="grey-buttons" onclick="attachElements('.')">.</button>
+        <button class="grey-buttons" onclick="
+          calculate = eval(calculate); 
+          displaycalculation();
+          localStorage.setItem('calculation',calculate)">=</button>
+        <button class="orange-buttons" onclick="attachElements('/')">/</button>
+      </div>
+      <div>
+        <button class="clear" onclick="
+          calculate='';
+          displaycalculation();">Clear</button>
+      </div>
+    </div>
+    
+
+    <script>
+      let calculate = localStorage.getItem('calculation') || '';
+      displaycalculation();
+      
+      function attachElements(value) {
+        calculate += value;
+        localStorage.setItem('calculation',calculate);
+        displaycalculation();
+      }
+
+      function displaycalculation() {
+        document.querySelector('.result').innerHTML = calculate;
+        console.log(calculate);
+      }
+    </script>
+  </body>
+</html>

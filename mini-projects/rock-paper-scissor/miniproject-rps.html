@@ -1,0 +1,30 @@
+<!--https://supersimple.dev/projects/rock-paper-scissors/-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mini-projects</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="10-miniproject-rps.css">
+    </head>
+    <body>
+        <div class="container">
+            <p class="rps-heading">Rock Paper Scissors</p>
+            <div>
+                <button onclick="playgame('rock')" class="rock-button"><img src="rock-emoji.png"></button>
+                <button onclick="playgame('paper')" class="paper-button"><img src="paper-emoji.png"></button>
+                <button onclick="playgame('scissor')" class="scissor-button"><img src="scissors-emoji.png"></button>
+            </div>
+            <p class="js-result1 result1-button"></p>
+            <p class="js-result2" ></p>
+            <div style="margin-bottom: 30px;"></div>
+            <p class="js-result3"></p>
+            <button onclick="resetscore()" class="resetscore-button">Reset Score</button>
+        </div>
+        
+
+        <script src="10-mini-rps.js"></script>
+    </body>
+</html>
