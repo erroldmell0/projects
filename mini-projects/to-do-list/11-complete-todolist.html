@@ -1,0 +1,98 @@
+<!-- https://supersimple.dev/projects/arrays/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>to-do-list</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+      .js-input,
+      .dateinput {
+        font-size: 15px;
+        padding: 8px 6px;
+      }
+
+      .add-button {
+        color: white;
+        font-size: 15px;
+        background-color: rgb(0, 164, 0);
+        border: none;
+        border-radius: 2px;
+      }
+
+      .delete-button {
+        color: white;
+        font-size: 15px;
+        background-color: rgb(151, 0, 0);
+        border: none;
+        border-radius: 2px;
+        padding: 10px 30px;
+      }
+
+      .todo-grid, 
+      .todo-input-grid{
+        display: grid;
+        grid-template-columns: 200px 150px 100px;
+        column-gap: 10px;
+        row-gap: 10px;
+      }
+
+      .todo-input-grid {
+        margin-bottom: 10px;
+        align-items: stretch;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <p>To Do List </p>
+    <div class="todo-input-grid">
+      <input class="js-input" placeholder="Todo name" onkeydown="checkkeydown(event)">
+      <input type="date" class="dateinput">
+      <button onclick="additem()" class="add-button">Add</button>
+    </div>
+    <div class="display todo-grid"></div>
+
+    <script>
+      let todolist = JSON.parse(localStorage.getItem('todo')) || [];
+      display();
+
+      function additem() {
+        let item1 = document.querySelector('.js-input');
+        let item2 = document.querySelector('.dateinput');
+        todolist.push({name:item1.value, date:item2.value});
+        localStorage.setItem('todo',JSON.stringify(todolist));
+        display();
+        item1.value = '';
+        item2.value= '';
+      }
+
+      function checkkeydown(event) {
+        if(event.key==='Enter') {
+          additem();
+        }
+      }
+
+      function display() {
+        let todoHTML = '';
+        for(let i=0 ; i<todolist.length ; i++) {
+          let {name,date }= todolist[i];
+          //let name = todolist[i].name;
+          //let date = todolist[i].date;
+          todoHTML += `
+            <div>${name}</div>
+            <div>${date}</div>
+            <button class="delete-button" onclick="
+              todolist.splice(${i},1);
+              display();
+              localStorage.setItem('todo',JSON.stringify(todolist));
+            ">Delete</button>`;
+        }
+        document.querySelector('.display').innerHTML = todoHTML;
+        console.log(todoHTML);
+      }
+    </script>
+  </body>
+</html>
